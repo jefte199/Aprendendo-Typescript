@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "build": "yarn tsc"
+  },
+  "devDependencies": {
+    "typescript": "^4.9.3",
+    "nodemon": "^2.0.20"
+  }
+}
