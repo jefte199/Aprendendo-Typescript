@@ -1,5 +1,9 @@
+body  { 
+  background-color: #333232;
+}
+
 table {
-  font-family: arial, sans-serif;
+    font-family: arial, sans-serif;
   width: 100%;
 }
 
@@ -7,6 +11,17 @@ td, th {
   text-align: left;
   padding: 8px;
 }
+
+h2 {
+  color: #FFF;
+  font-size: 30px;
+}
+
+th {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+}
+
 
  /* tr:nth-child(even) {
   background-color: #FFF;
