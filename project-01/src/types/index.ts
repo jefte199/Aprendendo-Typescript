@@ -8,3 +8,9 @@ export interface ReturnAPI {
   Status: string
   "Valor (R$)": string
 }
+
+export interface Returnfunction {
+  contFloat: number;
+  numCard: number;
+  numBoleto: number;
+}
