@@ -14,13 +14,13 @@ import { api } from './api';
 import { ReturnAPI, Returnfunction } from './types';
 import sum from './data';
 const res = await api("https://api.origamid.dev/json/transacoes.json")
-console.log(res)
+//console.log(res)
 const returnFunction: Returnfunction = await sum(res);
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>
     <h2>Estatisticas</h2>
-    <p>Total: ${returnFunction.contFloat}</p>
+    <p>Total: ${returnFunction.cont}</p>
     <br />    
     <p>Cartão de credito: ${returnFunction.numCard}</p>
     <p>Boleto: ${returnFunction.numBoleto}</p>

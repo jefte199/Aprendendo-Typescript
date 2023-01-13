@@ -1,13 +1,16 @@
 import { ReturnAPI } from '../types';
 
 export default async function sum(data: ReturnAPI[]) {
-  let contFloat = 0;
+  let cont = 0;
   let numCard = 0;
   let numBoleto = 0;
   data.map((item: ReturnAPI) => {
     const value = item['Valor (R$)'].split(',');
     if (value[0] !== '-') {
-      contFloat = contFloat + parseFloat(item['Valor (R$)'])
+      const newCont = parseFloat(item['Valor (R$)']);
+      if (newCont > 0) {
+        cont = cont + newCont
+      }
     }
     if (item['Forma de Pagamento'] === "Cartão de Crédito") {
       numCard = numCard + 1;
@@ -16,7 +19,7 @@ export default async function sum(data: ReturnAPI[]) {
      }
   })
   return { 
-    contFloat: contFloat,
+    cont: cont,
     numCard: numCard,
     numBoleto: numBoleto
   }

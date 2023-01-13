@@ -10,7 +10,7 @@ export interface ReturnAPI {
 }
 
 export interface Returnfunction {
-  contFloat: number;
+  cont: number;
   numCard: number;
   numBoleto: number;
 }
