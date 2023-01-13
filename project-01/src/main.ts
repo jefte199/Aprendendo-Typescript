@@ -1,6 +1,6 @@
 /*
 3 - Calcule:
-3.1 - Soma total dos valores
+*3.1 - Soma total dos valores
 3.2 - Transações por meio de pagamento.
 3.3 - Transações por status.
 3.4 - Total de vendas por dia da semana.
@@ -11,14 +11,22 @@
 */
 import './style.css';
 import { api } from './api';
-import { ReturnAPI } from './types';
-import { sum } from './data';
+import { ReturnAPI, Returnfunction } from './types';
+import sum from './data';
 const res = await api("https://api.origamid.dev/json/transacoes.json")
-sum(res)
+console.log(res)
+const returnFunction: Returnfunction = await sum(res);
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>
-      <h2>Dados</h2>
+    <h2>Estatisticas</h2>
+    <p>Total: ${returnFunction.contFloat}</p>
+    <br />    
+    <p>Cartão de credito: ${returnFunction.numCard}</p>
+    <p>Boleto: ${returnFunction.numBoleto}</p>
+    <br />    
+
+    <h2>Dados</h2>
 
     <table>
       <tr>
