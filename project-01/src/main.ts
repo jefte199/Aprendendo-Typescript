@@ -2,7 +2,7 @@
 3 - Calcule:
 *3.1 - Soma total dos valores
 *3.2 - Transações por meio de pagamento.
-3.3 - Transações por status.
+*3.3 - Transações por status.
 3.4 - Total de vendas por dia da semana.
 3.5 - Dia da semana com mais vendas.
 4 - Mostre as estatísticas na tela.
@@ -24,6 +24,8 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = res ? `
     <br />    
     <p>Cartão de credito: ${returnFunction.numCard}</p>
     <p>Boleto: ${returnFunction.numBoleto}</p>
+    <br />    
+    <p>Paga: ${returnFunction.pay}</p>
     <br />    
 
     <h2>Dados</h2>

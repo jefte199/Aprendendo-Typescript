@@ -13,4 +13,5 @@ export interface Returnfunction {
   cont: number;
   numCard: number;
   numBoleto: number;
+  pay: number;
 }

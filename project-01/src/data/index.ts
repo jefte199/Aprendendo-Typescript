@@ -4,6 +4,7 @@ export default async function sum(data: ReturnAPI[]) {
   let cont = 0;
   let numCard = 0;
   let numBoleto = 0;
+  let pay = 0;
   data.map((item: ReturnAPI) => {
     const value = item['Valor (R$)'].split(',');
     if (value[0] !== '-') {
@@ -11,6 +12,9 @@ export default async function sum(data: ReturnAPI[]) {
       if (newCont > 0) {
         cont = cont + newCont
       }
+    } 
+    if(item.Status === "Paga") {
+      pay = pay + 1;
     }
     if (item['Forma de Pagamento'] === "Cartão de Crédito") {
       numCard = numCard + 1;
@@ -21,7 +25,8 @@ export default async function sum(data: ReturnAPI[]) {
   return { 
     cont: cont,
     numCard: numCard,
-    numBoleto: numBoleto
+    numBoleto: numBoleto,
+    pay: pay,
   }
 }
 
