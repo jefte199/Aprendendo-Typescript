@@ -1,7 +1,7 @@
 /*
 3 - Calcule:
 *3.1 - Soma total dos valores
-3.2 - Transações por meio de pagamento.
+*3.2 - Transações por meio de pagamento.
 3.3 - Transações por status.
 3.4 - Total de vendas por dia da semana.
 3.5 - Dia da semana com mais vendas.
@@ -17,7 +17,7 @@ const res = await api("https://api.origamid.dev/json/transacoes.json")
 //console.log(res)
 const returnFunction: Returnfunction = await sum(res);
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
+document.querySelector<HTMLDivElement>('#app')!.innerHTML = res ? `
   <div>
     <h2>Estatisticas</h2>
     <p>Total: ${returnFunction.cont}</p>
@@ -38,17 +38,22 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
       </tr>
 
       ${res.map((item: ReturnAPI) => {
-        return `
-        <tr>
-        <td>${item.Nome}</td>
-        <td>${item.Email}</td>
-        <td>${item['Valor (R$)']}</td>
-        <td>${item['Forma de Pagamento']}</td>
-        <td>${item.Status}</td>
-        </tr>
-          `
+      return `
+            <tr>
+            <td>${item.Nome}</td>
+            <td>${item.Email}</td>
+            <td>${item['Valor (R$)']}</td>
+            <td>${item['Forma de Pagamento']}</td>
+            <td>${item.Status}</td>
+            </tr>
+              `
       })}
     </table>
   </div>
 `
-
+  :
+  `
+  <div>
+    <h2>Estatisticas</h2>
+    <p>CARREGANDO</p>
+  `
