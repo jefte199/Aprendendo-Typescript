@@ -3,7 +3,7 @@
 *3.1 - Soma total dos valores
 *3.2 - Transações por meio de pagamento.
 *3.3 - Transações por status.
-3.4 - Total de vendas por dia da semana.
+*3.4 - Total de vendas por dia da semana.
 3.5 - Dia da semana com mais vendas.
 4 - Mostre as estatísticas na tela.
 5 - Organize o código em pequenos módulos.
@@ -13,11 +13,12 @@ import './style.css';
 import { api } from './api';
 import { ReturnAPI, Returnfunction } from './types';
 import sum from './data';
-const res = await api("https://api.origamid.dev/json/transacoes.json")
-//console.log(res)
-const returnFunction: Returnfunction = await sum(res);
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = res ? `
+const res = await api("https://api.origamid.dev/json/transacoes.json")
+console.log(res)
+if (res) {
+  const returnFunction: Returnfunction = await sum(res);
+  document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>
     <h2>Estatisticas</h2>
     <p>Total: ${returnFunction.cont}</p>
@@ -26,6 +27,10 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = res ? `
     <p>Boleto: ${returnFunction.numBoleto}</p>
     <br />    
     <p>Paga: ${returnFunction.pay}</p>
+    <p>Recusada pela operadora de cartão: ${returnFunction.pay}</p>
+    <p>Aguardando pagamento: ${returnFunction.pay}</p>
+    <p>Estornada: ${returnFunction.pay}</p>
+    <p>Dia com mais de vendas: ${returnFunction.pay}</p>
     <br />    
 
     <h2>Dados</h2>
@@ -40,7 +45,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = res ? `
       </tr>
 
       ${res.map((item: ReturnAPI) => {
-      return `
+    return `
             <tr>
             <td>${item.Nome}</td>
             <td>${item.Email}</td>
@@ -49,13 +54,15 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = res ? `
             <td>${item.Status}</td>
             </tr>
               `
-      })}
+  })}
     </table>
   </div>
 `
-  :
-  `
+} else {
+  document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>
     <h2>Estatisticas</h2>
-    <p>CARREGANDO</p>
-  `
+    <p>ERRO...</p>
+  </div>
+    `
+}
